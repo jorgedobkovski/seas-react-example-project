@@ -19,10 +19,10 @@ function Footer() {
               <div className="d-flex flex-column justify-content-center text-center mx-2 gap-1 gap-lg-0">
                   <span className="text-white" style={{fontSize: "0.9rem"}}>Para mais informações entrar em contato com os canais de comunicação:</span>
                   <span className="text-white" style={{fontSize: "0.9rem"}}>
-                      Telefone (WhatsApp): <a href="tel:+55 (69) 9 9972-4592" className="text-white fw-bold text-decoration-none">+55 (69) 9 9972-4592</a>
+                      Telefone (WhatsApp): <a href="tel:+55 (69) 9 9951-9534" className="text-white fw-bold text-decoration-none">+55 (69) 9 9951-9534</a>
                   </span>
                   <span className="text-white" style={{fontSize: "0.9rem"}}>
-                      Crescendo Bem: <a href="mailto:crescendobem@seas.ro.gov.br" className="text-white fw-bold text-decoration-none">crescendobem@seas.ro.gov.br</a>
+                      Geração Emprego: <a href="mailto:suporte@geracaoemprego.ro.gov.br" className="text-white fw-bold text-decoration-none">suporte@geracaoemprego.ro.gov.br</a>
                   </span>
               </div>
               <span className="bg-secondary h-100 divider footer-divider" style={{ width: "1px" }}></span>

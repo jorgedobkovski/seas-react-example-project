@@ -1,5 +1,5 @@
 import React from 'react';
-import logoReact from '../logo.svg';
+import logoSistema from '../logo_sistema.png';
 
 function Header({ toggleSidebar }) {
   return (
@@ -17,9 +17,9 @@ function Header({ toggleSidebar }) {
       </div>
 
       {/* Center: Logos */}
-      <a className="d-flex align-items-center justify-content-center mx-auto gap-3 text-decoration-none" href="/" style={{ whiteSpace: "nowrap" }}>
-        <img src={logoReact} alt="React Logo" style={{ height: "50px" }} />
-        <span className="text-secondary d-none d-sm-block" style={{fontSize: "1.5rem", fontWeight: "300"}}>|</span>
+      <a className="d-flex align-items-center justify-content-center mx-auto gap-1 text-decoration-none" href="/" style={{ whiteSpace: "nowrap" }}>
+        <img src={logoSistema} alt="Sistema Logo" style={{ height: "50px" }} />
+        <div className="d-none d-sm-block bg-gov-blue" style={{ width: "1px", height: "62px" }}></div>
         <img src="https://cdn.sistemas.ro.gov.br/imgs/logo-ro/v1/logo_governo_ro_texto_azul.svg" alt="Governo de Rondônia" className="d-none d-sm-block" style={{ height: "62px", width: "200px" }} />
       </a>
       
