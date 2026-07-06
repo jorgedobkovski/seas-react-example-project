@@ -1,5 +1,5 @@
+import logoSistema from '../logo_sine.svg';
 import React from 'react';
-import logoSistema from '../logo_sistema.png';
 
 function Header({ toggleSidebar }) {
   return (
@@ -18,7 +18,7 @@ function Header({ toggleSidebar }) {
 
       {/* Center: Logos */}
       <a className="d-flex align-items-center justify-content-center mx-auto gap-1 text-decoration-none" href="/" style={{ whiteSpace: "nowrap" }}>
-        <img src={logoSistema} alt="Sistema Logo" style={{ height: "50px" }} />
+        <img src={logoSistema} alt="Sistema Logo" style={{ height: "62px" }} />
         <div className="d-none d-sm-block bg-gov-blue" style={{ width: "1px", height: "62px" }}></div>
         <img src="https://cdn.sistemas.ro.gov.br/imgs/logo-ro/v1/logo_governo_ro_texto_azul.svg" alt="Governo de Rondônia" className="d-none d-sm-block" style={{ height: "62px", width: "200px" }} />
       </a>
@@ -28,7 +28,7 @@ function Header({ toggleSidebar }) {
         
         <div className="dropdown d-none d-lg-block">
           <button className="btn btn-link text-gov-blue text-decoration-none dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" style={{fontSize: "16px", fontWeight: "500"}}>
-             ACESSO À INFORMAÇÃO
+             <b>ACESSO À INFORMAÇÃO</b>
           </button>
           <ul className="dropdown-menu dropdown-menu-end">
             <li><a className="dropdown-item" href="#">Portal da Transparência</a></li>
