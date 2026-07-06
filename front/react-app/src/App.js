@@ -3,15 +3,27 @@ import Layout from "./components/Layout";
 import "./App.css";
 import ItemForm from './components/ItemForm';
 import ItemList from './components/ItemList';
+import api from './api/item';
 
 function App() {
   const [index, setIndex] = useState(0);
   const [items, setItems] = useState([]);
   const [item, setItem] = useState({ id: 0 });
 
+  const GetAllItems = async () => {
+    const response = await api.get("item");
+    return response.data;
+  }
+
   useEffect(() => {
-    items.length <= 0 ? setIndex(1) : setIndex(Math.max(...items.map(item => item.id)) + 1);
-  }, [items]);
+    const getItems = async () => {
+      const items = await GetAllItems();
+      if (items) {
+        setItems(items);
+      }
+    };
+    getItems();
+  }, []);
 
   function addItem(newItem) {
     const newItemsList = [...items, {...newItem, id: index}];
