@@ -40,6 +40,8 @@ function App() {
 
   return (
     <Layout>
+      <h1 className="text-white mb-0">Vagas Divulgadas</h1>
+      <h4 className="text-white mb-4"><i className="fas fa-store me-2"></i>Supermercado Meta 31</h4>
       <ItemForm
         addItem={addItem}
         updateItem={updateItem}
