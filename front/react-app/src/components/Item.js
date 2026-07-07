@@ -2,12 +2,10 @@ import React from "react";
 export default function Item(props) {
   function prioridadeLabel(priority) {
     switch (priority) {
-      case "1":
-        return "Baixa";
-      case "2":
-        return "Média";
-      case "3":
-        return "Alta";
+      case "Baixa":
+      case "Média":
+      case "Alta":
+        return priority;
       default:
         return "Desconhecida";
     }
@@ -15,11 +13,11 @@ export default function Item(props) {
 
   function prioridadeBadge(priority) {
     switch (priority) {
-      case "1":
+      case "Baixa":
         return "bg-success";
-      case "2":
+      case "Média":
         return "bg-warning";
-      case "3":
+      case "Alta":
         return "bg-danger";
       default:
         return "bg-secondary";
