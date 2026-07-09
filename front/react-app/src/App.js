@@ -25,13 +25,15 @@ function App() {
     getItems();
   }, []);
 
-  function addItem(newItem) {
-    const newItemsList = [...items, {...newItem, id: index}];
-    setItems(newItemsList);
-  }
+  const addItem = async (newItem) => {
+    const response = await api.post("item", newItem);
+    setItems([...items, response.data]);
+  };
 
-  function updateItem(updatedItem) {
-    const updatedItems = items.map(item => (item.id === updatedItem.id ? updatedItem : item));
+  const updateItem = async (updatedItem) => {
+    const response = await api.put(`item/${updatedItem.id}`, updatedItem);
+    const { id } = response.data;
+    const updatedItems = items.map(item => (item.id === id ? response.data : item));
     setItems(updatedItems);
     setItem({ id: 0 });
   }
@@ -40,9 +42,11 @@ function App() {
     setItem({ id: 0 });
   }
 
-  function removeItem(id) {
-    const filteredItems = items.filter(item => item.id !== id);
-    setItems(filteredItems);
+  const removeItem = async (id) => {
+    if(await api.delete(`item/${id}`)) {
+      const filteredItems = items.filter(item => item.id !== id);
+      setItems(filteredItems);
+    }
   }
 
   function getItem(id) {
