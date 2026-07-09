@@ -4,7 +4,7 @@ namespace dotnet.API.Models
     {
         NaoDefinido,
         Baixa,
-        Media,
+        Média,
         Alta
     }
 }

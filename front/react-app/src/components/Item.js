@@ -50,7 +50,7 @@ export default function Item(props) {
           </button>
           <button
             className="btn btn-outline-danger btn-sm"
-            onClick={() => props.removeItem(props.item.id)}
+            onClick={() => props.handleConfirmModal(props.item.id)}
           >
             <i className="fa-solid fa-trash-can me-1"></i>Excluir
           </button>
