@@ -6,6 +6,7 @@ using dotnet.API.Data;
 using dotnet.API.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace dotnet.API.Controllers
 {
@@ -21,60 +22,105 @@ namespace dotnet.API.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<Item> Get()
+        public async Task<IActionResult> Get()
         {
-            return _context.Items.ToList();
+            try
+            {
+                var items = await _context.Items.ToListAsync();
+                if (items == null) return NoContent();
+                return Ok(items);
+            }
+            catch (Exception ex)
+            {
+                return this.StatusCode(StatusCodes.Status500InternalServerError,
+                    $"Erro ao tentar recuperar itens. Erro: {ex.Message}");
+            }
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<Item>> Get([FromRoute] int id)
+        public async Task<ActionResult> Get([FromRoute] int id)
         {
-            var item = await _context.Items.FindAsync(id);
-            if (item == null)
+            try
             {
-                return NotFound("Item not found");
+                var item = await _context.Items.FindAsync(id);
+                if (item == null)
+                {
+                    return NoContent();
+                }
+                return Ok(item);
             }
-            return item;
+            catch (Exception ex)
+            {
+                return this.StatusCode(StatusCodes.Status500InternalServerError,
+                    $"Erro ao tentar recuperar item {id}. Erro: {ex.Message}");
+            }
         }
 
         [HttpPost]
-        public async Task<ActionResult<Item>> Post(Item item)
+        public async Task<ActionResult> Post(Item item)
         {
-            _context.Items.Add(item);
-            await _context.SaveChangesAsync();
-            return CreatedAtAction(nameof(Get), new { id = item.Id }, item);
+            try
+            {
+                if (item.CompletedAt != null)
+                    BadRequest("Não é possivel atualizar um item concluído.");
+                _context.Items.Add(item);
+                await _context.SaveChangesAsync();
+                return CreatedAtAction(nameof(Get), new { id = item.Id }, item);
+            }
+            catch (Exception ex)
+            {
+                return this.StatusCode(StatusCodes.Status500InternalServerError,
+                    $"Erro ao criar item. Erro: {ex.Message}");
+            }
         }
 
         [HttpPut("{id}")]
-        public async Task<ActionResult<Item>> Put(int id, Item item)
+        public async Task<ActionResult> Put(int id, Item item)
         {
-            if (id != item.Id)
+            try
             {
-                return BadRequest("ID mismatch");
-            }
+                if (id != item.Id)
+                {
+                    return BadRequest("ID mismatch");
+                }
 
-            _context.Update(item);
-            if (_context.SaveChanges() > 0)
-            {
-                return _context.Items.FirstOrDefault(i => i.Id == id);
+                _context.Update(item);
+                if (await _context.SaveChangesAsync() > 0)
+                {
+                    var updatedItem = await _context.Items.FirstOrDefaultAsync(i => i.Id == id);
+                    return Ok(updatedItem);
+                }
+                else
+                {
+                    return Ok(new Item());
+                }
             }
-            else
+            catch (Exception ex)
             {
-                return new Item();
+                return this.StatusCode(StatusCodes.Status500InternalServerError,
+                    $"Erro ao editar item. Erro: {ex.Message}");
             }
         }
 
         [HttpDelete("{id}")]
         public async Task<ActionResult<Item>> Delete(int id)
         {
-            var item = await _context.Items.FindAsync(id);
-            if (item == null)
+            try
             {
-                return NotFound("Item not found");
+                var item = await _context.Items.FindAsync(id);
+                if (item == null)
+                {
+                    return BadRequest("Item not found");
+                }
+                _context.Items.Remove(item);
+                await _context.SaveChangesAsync();
+                return Ok();
             }
-            _context.Items.Remove(item);
-            await _context.SaveChangesAsync();
-            return NoContent();
+            catch (Exception ex)
+            {
+                return this.StatusCode(StatusCodes.Status500InternalServerError,
+                    $"Erro ao remover item. Erro: {ex.Message}");
+            }
         }
     }
 }
