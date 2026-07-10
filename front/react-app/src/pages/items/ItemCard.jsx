@@ -1,5 +1,5 @@
 import React from "react";
-export default function Item(props) {
+export default function ItemCard(props) {
   function prioridadeLabel(priority) {
     switch (priority) {
       case "Baixa":

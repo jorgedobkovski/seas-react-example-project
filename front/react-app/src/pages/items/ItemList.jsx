@@ -1,12 +1,12 @@
 import React from 'react'
-import Item from './Item'
+import ItemCard from './ItemCard'
 
 export default function ItemList(props) {
   return (
     <div className="mb-4">
         <div className="row g-3">
           {props.items.map((item) => (
-            <Item
+            <ItemCard
                 key={item.id}
                 item={item}
                 handleConfirmModal={props.handleConfirmModal}
