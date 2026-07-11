@@ -1,0 +1,22 @@
+.action-card {
+  border-radius: 8px;
+  transition: transform 0.2s;
+  min-height: 200px;
+}
+
+.action-card:hover {
+  transform: translateY(-5px);
+  cursor: pointer;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1) !important;
+}
+
+.icon-wrapper-circle {
+  width: 70px;
+  height: 70px;
+  background-color: #21618C;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
