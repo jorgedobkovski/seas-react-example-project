@@ -4,7 +4,7 @@ import Table from "react-bootstrap/Table";
 import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
 import { Button } from 'react-bootstrap';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const empresas = [
   {
@@ -45,7 +45,7 @@ const empresas = [
 ];
 
 function EmpresaList() {
-  const history = useHistory();
+  const navigate = useNavigate();
   const [termoBusca, setTermoBusca] = useState('');
 
   const handleInputChange = (e) => {
@@ -59,7 +59,7 @@ function EmpresaList() {
   });
 
   const NovaEmpresa = () => {
-    history.push('/empresa/detalhes')
+    navigate('/empresa/detalhes')
   }
 
   return (
@@ -101,7 +101,7 @@ function EmpresaList() {
               <td>
                 <button 
                   className="btn btn-sm btn-outline-primary me-2"
-                  onClick={() => history.push(
+                  onClick={() => navigate(
                     `/empresa/detalhes/${empresa.id}`
                   )}>
                   <i className="fas fa-user-edit me-2"></i>

@@ -1,15 +1,15 @@
 import React from 'react'
 import TitlePage from '../../components/TitlePage'
 import { Button } from 'react-bootstrap'
-import { useHistory, useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 
 function EmpresaForm() {  
-  const history = useHistory();
+  const navigate = useNavigate();
   let {id} = useParams();
   return (
     <>
     <TitlePage title={'Detalhes Empresa ' + (id !== undefined ? id : '')} subtitle="Formulário">
-      <Button variant='outline-light' onClick={() => history.push('/empresa/lista')}>
+      <Button variant='outline-light' onClick={() => navigate('/empresa/lista')}>
         <i className="fas fa-arrow-left me-2"></i>
         Voltar
       </Button>
