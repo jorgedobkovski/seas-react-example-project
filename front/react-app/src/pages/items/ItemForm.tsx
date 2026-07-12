@@ -1,41 +1,44 @@
 import { useState, useEffect } from "react";
+import { IItem, Priority } from "../../model/item";
+import { ItemFormProps } from "../../model/itemProps";
 
-const initialItem = { id: 0, name: "", description: "", priority: 0 };
+const initialItem : IItem = { id: 0, name: "", description: "", priority: Priority.NaoDefinido };
 
-export default function ItemForm(props) {
-  const [item, setItem] = useState(currentItem());
-  const inputTextHandler = (e) => {
+const ItemForm : React.FC<ItemFormProps> = ({selectedItem, updateItem, addItem, cancelItem}:ItemFormProps) => {
+  const [item, setItem] = useState<IItem>(currentItem());
+
+  const handleValue = (e : any) => {
     const { name, value } = e.target;
     setItem({ ...item, [name]: value });
   };
 
   useEffect(() => {
-    if (props.selectedItem.id !== 0) {
-      setItem(props.selectedItem);
+    if (selectedItem.id !== 0) {
+      setItem(selectedItem);
     }
-  }, [props.selectedItem]);
+  }, [selectedItem]);
 
   function currentItem() {
-    if (props.selectedItem.id !== 0) {
-      return props.selectedItem;
+    if (selectedItem.id !== 0) {
+      return selectedItem;
     } else {
       return initialItem;
     }
   }
 
-  const handleCancel = (e) => {
+  const handleCancel = (e : any) => {
     e.preventDefault();
-    props.cancelItem();
+    cancelItem();
     setItem(initialItem);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e : any) => {
     e.preventDefault();
 
-    if (props.selectedItem.id !== 0) {
-      props.updateItem(item);
+    if (selectedItem.id !== 0) {
+      updateItem(item);
     } else {
-      props.addItem(item);
+      addItem(item);
     }
 
     setItem(initialItem);
@@ -57,7 +60,7 @@ export default function ItemForm(props) {
             id="itemName"
             name="name"
             value={item.name || ""}
-            onChange={inputTextHandler}
+            onChange={handleValue}
           />
         </div>
         <div className="col-md-6">
@@ -72,7 +75,7 @@ export default function ItemForm(props) {
             id="itemPriority"
             name="priority"
             value={item.priority || ""}
-            onChange={inputTextHandler}
+            onChange={handleValue}
           >
             <option value="0">Selecione...</option>
             <option value="1">Baixa</option>
@@ -95,7 +98,7 @@ export default function ItemForm(props) {
             id="itemDescription"
             name="description"
             value={item.description || ""}
-            onChange={inputTextHandler}
+            onChange={handleValue}
           />
         </div>
       </div>
@@ -123,3 +126,5 @@ export default function ItemForm(props) {
     </form>
   );
 }
+
+export default ItemForm;

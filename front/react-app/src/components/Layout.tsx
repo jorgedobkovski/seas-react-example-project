@@ -3,7 +3,11 @@ import Header from './Header';
 import Sidebar from './Sidebar';
 import Footer from './Footer';
 
-function Layout({ children }) {
+interface LayoutProps {
+  children?: React.ReactNode;
+}
+
+const Layout : React.FC<LayoutProps> = ({ children } : LayoutProps) => {
   const [isMobile, setIsMobile] = useState(window.innerWidth < 992);
   const [isSidebarOpen, setIsSidebarOpen] = useState(window.innerWidth >= 992);
 

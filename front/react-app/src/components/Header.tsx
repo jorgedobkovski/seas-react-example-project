@@ -1,7 +1,11 @@
 import logoSistema from '../logo_sine.svg';
 import React from 'react';
 
-function Header({ toggleSidebar }) {
+interface HeaderProps {
+  toggleSidebar : () => void;
+}
+
+const Header : React.FC<HeaderProps> = ({ toggleSidebar } : HeaderProps) => {
   return (
     <header className="bg-white border-bottom px-4 shadow-sm d-flex align-items-center justify-content-between" style={{zIndex: 1000, height: "75px", minHeight: "75px", flexWrap: "nowrap"}}>
       

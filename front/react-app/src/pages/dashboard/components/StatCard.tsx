@@ -1,7 +1,14 @@
 import React from 'react';
 import { Card } from 'react-bootstrap';
 
-const StatCard = ({ icon, number, text, color }) => {
+interface StatCardProps {
+  icon: string,
+  number: string,
+  text: string,
+  color: string,
+}
+
+const StatCard : React.FC<StatCardProps> = ({ icon, number, text, color } : StatCardProps) => {
   return (
     <Card className="shadow-sm border-0 stat-card h-100">
       <Card.Body className="d-flex align-items-center p-3">

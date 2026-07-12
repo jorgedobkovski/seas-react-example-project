@@ -1,6 +1,12 @@
 import React from "react";
 
-function TitlePage({title, subtitle, children}) {
+interface TitlePageProps {
+  title: string,
+  subtitle: string,
+  children?: React.ReactNode;
+}
+
+const TitlePage: React.FC<TitlePageProps> = ({title, subtitle, children} : TitlePageProps) => {
   return (
     <div className="row justify-content-between mb-4">
       <div className="col-auto">

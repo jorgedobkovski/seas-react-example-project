@@ -1,26 +1,29 @@
 import { useState, useEffect } from "react";
 import TitlePage from "../../components/TitlePage";
-import ItemList from "../items/ItemList";
-import ItemForm from "../items/ItemForm";
+import ItemList from "./ItemList";
+import ItemForm from "./ItemForm";
 import api from "../../api/item";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
+import { IItem, Priority } from "../../model/item";
 
-function Item() {
+const initialItem : IItem = { id: 0, name: "", description: "", priority: Priority.NaoDefinido };
+
+const Item = () => {
   const [index, setIndex] = useState(0);
-  const [items, setItems] = useState([]);
-  const [item, setItem] = useState({ id: 0 });
+  const [items, setItems] = useState<IItem[]>([]);
+  const [item, setItem] = useState<IItem>(initialItem);
 
   const [showItemModal, setShowItemModal] = useState(false);
   const [smShowConfirmModal, setShowConfirmModal] = useState(false);
 
   const handleItemModal = () => setShowItemModal(!showItemModal);
-  const handleConfirmModal = (id) => {
+  const handleConfirmModal = (id : number) => {
     if (id !== 0 && id !== undefined) {
       const item = items.filter((item) => item.id === id)[0];
       setItem(item);
     } else {
-      setItem({ id: 0 });
+      setItem(initialItem);
     }
     setShowConfirmModal(!smShowConfirmModal);
   };
@@ -40,34 +43,34 @@ function Item() {
     getItems();
   }, []);
 
-  const addItem = async (newItem) => {
+  const addItem = async (newItem : IItem) => {
     const response = await api.post("item", newItem);
     setItems([...items, response.data]);
     handleItemModal();
   };
 
-  const updateItem = async (updatedItem) => {
+  const updateItem = async (updatedItem : IItem) => {
     const response = await api.put(`item/${updatedItem.id}`, updatedItem);
     const { id } = response.data;
     const updatedItems = items.map((item) =>
       item.id === id ? response.data : item,
     );
     setItems(updatedItems);
-    setItem({ id: 0 });
+    setItem(initialItem);
     handleItemModal();
   };
 
   function newItem() {
-    setItem({ id: 0 });
+    setItem(initialItem);
     handleItemModal();
   }
 
   function cancelItem() {
-    setItem({ id: 0 });
+    setItem(initialItem);
     handleItemModal();
   }
 
-  const removeItem = async (id) => {
+  const removeItem = async (id : number) => {
     handleConfirmModal(0);
     if (await api.delete(`item/${id}`)) {
       const filteredItems = items.filter((item) => item.id !== id);
@@ -75,7 +78,7 @@ function Item() {
     }
   };
 
-  function getItem(id) {
+  function getItem(id : number) {
     const item = items.filter((item) => item.id === id)[0];
     setItem(item);
     handleItemModal();
@@ -119,7 +122,7 @@ function Item() {
       <Modal
         size="sm"
         show={smShowConfirmModal}
-        onHide={handleConfirmModal}
+        onHide={() => handleConfirmModal(0)}
         backdrop="static"
         keyboard={false}
       >
@@ -130,7 +133,7 @@ function Item() {
           <p>Deseja realmente excluir o item?</p>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={() => handleConfirmModal()}>
+          <Button variant="secondary" onClick={() => handleConfirmModal(0)}>
             Cancelar
           </Button>
           <Button variant="danger" onClick={() => removeItem(item.id)}>

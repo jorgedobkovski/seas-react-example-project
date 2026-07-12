@@ -1,7 +1,7 @@
 import React from 'react'
 import EmpresaList from './EmpresaList'
 
-function Empresa() {
+const Empresa : React.FC = () => {
   return (
     <>
         <EmpresaList/>

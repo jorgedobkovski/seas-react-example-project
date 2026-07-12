@@ -3,7 +3,7 @@ import TitlePage from '../../components/TitlePage'
 import { Button } from 'react-bootstrap'
 import { useNavigate, useParams } from 'react-router-dom'
 
-function EmpresaForm() {  
+const EmpresaForm : React.FC = () => {  
   const navigate = useNavigate();
   let {id} = useParams();
   return (

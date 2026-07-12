@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Footer() {
+const Footer : React.FC = () => {
   return (
     <footer className="footer mt-auto py-3" style={{ backgroundColor: "#2b5892", color: "white" }}>
       <div className="container-fluid">

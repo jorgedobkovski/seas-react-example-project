@@ -5,7 +5,7 @@ import ActionCard from "./components/ActionCard";
 import StatCard from "./components/StatCard";
 import "./Dashboard.css";
 
-function Dashboard() {
+const Dashboard : React.FC = () => {
   const actionCards = [
     { icon: "fas fa-user-tie", text: "Quero contratar funcionário" },
     { icon: "fas fa-bullhorn", text: "Quero divulgar uma vaga" },

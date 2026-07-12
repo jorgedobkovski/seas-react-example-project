@@ -2,15 +2,15 @@ import React, { useState } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 import { Nav, Collapse } from 'react-bootstrap';
 
-function Sidebar({ isOpen }) {
+interface SidebarProps{
+  isOpen : boolean
+}
+
+const Sidebar : React.FC<SidebarProps> = ({ isOpen } : SidebarProps) => {
   const [openPrivacy, setOpenPrivacy] = useState(false);
   const [openHelp, setOpenHelp] = useState(false);
-  const location = useLocation();
 
-  const isActive = (path, exact = false) => {
-    if (exact) return location.pathname === path;
-    return location.pathname.startsWith(path);
-  };
+  const getActiveRoute = useLocation().pathname ? 'Active' : '';
 
   return (
     <aside 
@@ -27,17 +27,17 @@ function Sidebar({ isOpen }) {
         <Nav className="flex-column mt-2 gap-1">
         
         {/* Active Link */}
-        <Nav.Link as={NavLink} to='/' end className={`sidebar-link d-flex align-items-center ${isActive('/', true) ? 'Active' : ''}`}>
+        <Nav.Link as={NavLink} to='/' end className={`sidebar-link d-flex align-items-center ${getActiveRoute}`}>
            <i className="fa-solid fa-house me-2"></i> 
            <span>Início</span>
         </Nav.Link>
 
-        <Nav.Link as={NavLink} to='/empresa/lista' className={`sidebar-link d-flex align-items-center ${isActive('/empresa') ? 'Active' : ''}`}>
+        <Nav.Link as={NavLink} to='/empresa/lista' className={`sidebar-link d-flex align-items-center ${getActiveRoute}`}>
            <i className="fa-solid fa-building me-2"></i> 
            <span>Empresas</span>
         </Nav.Link>
 
-        <Nav.Link as={NavLink} to='/item/lista' className={`sidebar-link d-flex align-items-center ${isActive('/item') ? 'Active' : ''}`}>
+        <Nav.Link as={NavLink} to='/item/lista' className={`sidebar-link d-flex align-items-center ${getActiveRoute}`}>
            <i className="fa-solid fa-briefcase me-2"></i> 
            <span>Vagas</span>
         </Nav.Link>
@@ -48,7 +48,7 @@ function Sidebar({ isOpen }) {
             onClick={() => setOpenPrivacy(!openPrivacy)}
             aria-controls="privacy-collapse-text"
             aria-expanded={openPrivacy}
-            className={`sidebar-link d-flex align-items-center justify-content-between w-100 ${(isActive('/aviso', true) || isActive('/politica', true)) ? 'Active' : ''}`}
+            className={`sidebar-link d-flex align-items-center justify-content-between w-100 ${getActiveRoute}`}
           >
              <div className="d-flex align-items-center">
                <i className="fa-solid fa-shield-halved me-2"></i> 
@@ -67,10 +67,10 @@ function Sidebar({ isOpen }) {
           <Collapse in={openPrivacy}>
             <div id="privacy-collapse-text" className="ps-3 pe-2 mt-1">
               <Nav className="flex-column gap-1">
-                <Nav.Link as={NavLink} to='/aviso' className={`sidebar-link py-1 ${isActive('/aviso', true) ? 'Active' : ''}`} style={{ fontSize: "14px" }}>
+                <Nav.Link as={NavLink} to='/aviso' className={`sidebar-link py-1 ${getActiveRoute}`} style={{ fontSize: "14px" }}>
                   Aviso de Privacidade
                 </Nav.Link>
-                <Nav.Link as={NavLink} to='/politica' className={`sidebar-link py-1 ${isActive('/politica', true) ? 'Active' : ''}`} style={{ fontSize: "14px" }}>
+                <Nav.Link as={NavLink} to='/politica' className={`sidebar-link py-1 ${getActiveRoute}`} style={{ fontSize: "14px" }}>
                   Politica de Privacidade
                 </Nav.Link>
 
