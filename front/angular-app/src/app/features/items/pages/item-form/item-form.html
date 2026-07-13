@@ -1,0 +1,46 @@
+<form (ngSubmit)="onSubmit()">
+  <div class="row g-3 align-items-end">
+    <div class="col-md-6">
+      <label for="itemName" class="form-label fw-bold text-secondary small">
+        Item Name
+      </label>
+      <input type="text" class="form-control" id="itemName" name="name" [(ngModel)]="item.name" />
+    </div>
+    <div class="col-md-6">
+      <label for="itemPriority" class="form-label fw-bold text-secondary small">
+        Priority
+      </label>
+      <select class="form-select" id="itemPriority" name="priority" [(ngModel)]="item.priority">
+        <option value="NaoDefinido">Selecione...</option>
+        <option value="Baixa">Baixa</option>
+        <option value="Média">Média</option>
+        <option value="Alta">Alta</option>
+      </select>
+    </div>
+  </div>
+  <div class="row g-3 align-items-end mt-1">
+    <div class="col-md-12">
+      <label for="itemDescription" class="form-label fw-bold text-secondary small">
+        Description
+      </label>
+      <input type="text" class="form-control" id="itemDescription" name="description" [(ngModel)]="item.description" />
+    </div>
+  </div>
+  <div class="row g-3 align-items-end mt-1">
+    <div class="col-md-12">
+      <ng-container *ngIf="item.id === 0; else editMode">
+        <button type="submit" class="btn btn-primary w-100">
+          <i class="fa-solid fa-plus me-2"></i> Adicionar
+        </button>
+      </ng-container>
+      <ng-template #editMode>
+        <button (click)="onCancel($event)" class="btn btn-danger btn-sm w-100 mb-1">
+          <i class="fa-solid fa-x me-2"></i> Cancelar
+        </button>
+        <button type="submit" class="btn btn-primary w-100">
+          <i class="fa-solid fa-save me-2"></i> Salvar
+        </button>
+      </ng-template>
+    </div>
+  </div>
+</form>

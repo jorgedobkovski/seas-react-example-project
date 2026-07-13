@@ -1,0 +1,53 @@
+.dashboard-container {
+  min-height: 100vh;
+  background-color: transparent;
+  padding-bottom: 0;
+  overflow-x: hidden;
+}
+
+.action-cards-container {
+  position: relative;
+  z-index: 10;
+  margin-bottom: 0px;
+}
+
+.stats-section {
+  background-color: #1a7b6b;
+  background-image: linear-gradient(rgba(26, 123, 107, 0.85), rgba(26, 123, 107, 0.85)), url('https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=2069&auto=format&fit=crop');
+  background-size: cover;
+  background-position: center;
+  padding: 60px 20px;
+  margin-top: 40px;
+}
+
+.stats-section-inner {
+  margin-top: 0px;
+}
+
+.stat-card {
+  border-radius: 8px;
+}
+
+.chat-btn {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 65px;
+  height: 65px;
+  border-radius: 50%;
+  background-color: white;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  color: #21618C;
+  z-index: 1000;
+  cursor: pointer;
+  transition: transform 0.2s;
+  border: 2px solid #21618C;
+}
+
+.chat-btn:hover {
+  transform: scale(1.1);
+}
