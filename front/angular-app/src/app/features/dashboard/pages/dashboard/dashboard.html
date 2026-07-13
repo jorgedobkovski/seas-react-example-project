@@ -1,0 +1,48 @@
+<div class="dashboard-container">
+  <!-- Title Section -->
+  <app-title-page
+    title="Bem-vindo ao SINE"
+    subtitle="Como posso te ajudar hoje?"
+  ></app-title-page>
+
+  <!-- Action Cards -->
+  <div class="action-cards-container mt-4">
+    <div class="row g-4">
+      <div class="col-12 col-sm-6 col-md-3" *ngFor="let card of actionCards">
+        <app-action-card [icon]="card.icon" [text]="card.text"></app-action-card>
+      </div>
+    </div>
+  </div>
+
+  <!-- O QUE E section -->
+  <div class="container mt-4 text-center p-5">
+    <div class="row g-4">
+      <h1>O que é o SINE?</h1>
+      <p>
+        O SINE é uma iniciativa do Governo do Estado de Rondônia, juntamente com a SEAS, para fomento à empregabilidade,<br/>
+        encurtando as distâncias entre empregadores e trabalhadores Rondonienses.
+      </p>
+    </div>
+  </div>
+
+  <!-- Stats Section -->
+  <section class="stats-section rounded-4">
+    <div class="container stats-section-inner">
+      <div class="row g-4">
+        <div class="col-12 col-sm-6 col-md-3" *ngFor="let stat of statCards">
+          <app-stat-card
+            [icon]="stat.icon"
+            [number]="stat.number"
+            [text]="stat.text"
+            [color]="stat.color"
+          ></app-stat-card>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Floating Chat Button -->
+  <div class="chat-btn">
+    <i class="fas fa-headset"></i>
+  </div>
+</div>

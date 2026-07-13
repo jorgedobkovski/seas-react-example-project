@@ -1,0 +1,51 @@
+<app-title-page title="Vagas Divulgadas" subtitle="Supermercado Meta 31">
+  <button class="btn btn-outline-light" (click)="newItem()">
+    <i class="fas fa-plus me-2"></i>Adicionar Vaga
+  </button>
+</app-title-page>
+
+<app-item-list
+  [items]="items"
+  (edit)="editItem($event)"
+  (delete)="confirmDelete($event)">
+</app-item-list>
+
+<!-- Item Modal -->
+<div class="modal fade" [ngClass]="{'show d-block': showItemModal}" tabindex="-1" style="background: rgba(0,0,0,0.5)">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title mb-0">
+          {{ selectedItem.id !== 0 ? 'Editar Item #' + selectedItem.id : 'Adicionar Novo Item' }}
+        </h5>
+        <button type="button" class="btn-close" (click)="closeModal()"></button>
+      </div>
+      <div class="modal-body">
+        <app-item-form
+          [selectedItem]="selectedItem"
+          (save)="saveItem($event)"
+          (cancel)="closeModal()">
+        </app-item-form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Confirm Modal -->
+<div class="modal fade" [ngClass]="{'show d-block': showConfirmModal}" tabindex="-1" style="background: rgba(0,0,0,0.5)">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title mb-0">Excluindo Item #{{ itemToDeleteId }}</h5>
+        <button type="button" class="btn-close" (click)="cancelDelete()"></button>
+      </div>
+      <div class="modal-body">
+        <p>Deseja realmente excluir o item?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="cancelDelete()">Cancelar</button>
+        <button type="button" class="btn btn-danger" (click)="deleteItem()">Excluir</button>
+      </div>
+    </div>
+  </div>
+</div>

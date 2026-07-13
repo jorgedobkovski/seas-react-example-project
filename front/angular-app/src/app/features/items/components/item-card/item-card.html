@@ -1,0 +1,24 @@
+<div class="card shadow-sm h-100">
+  <div class="card-body">
+    <div class="d-flex justify-content-between align-items-start mb-2">
+      <h6 class="card-title mb-0 fw-bold">
+        <span class="text-secondary me-1">#{{ item.id }}</span>
+        {{ item.name }}
+      </h6>
+      <span class="badge" [ngClass]="prioridadeBadge(item.priority)">
+        {{ prioridadeLabel(item.priority) }}
+      </span>
+    </div>
+    <p class="card-text text-muted small mb-3">
+      {{ item.description }}
+    </p>
+  </div>
+  <div class="card-footer bg-transparent border-top-0 d-flex justify-content-end gap-2 pt-0">
+    <button class="btn btn-outline-primary btn-sm" (click)="edit.emit(item.id)">
+      <i class="fa-solid fa-edit me-1"></i>Editar
+    </button>
+    <button class="btn btn-outline-danger btn-sm" (click)="delete.emit(item.id)">
+      <i class="fa-solid fa-trash-can me-1"></i>Excluir
+    </button>
+  </div>
+</div>
