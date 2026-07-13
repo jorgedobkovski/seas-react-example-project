@@ -2,3 +2,21 @@
   display: block;
   width: 100%;
 }
+
+.footer-bg {
+  background-color: #2b5892;
+  color: white;
+}
+
+.footer-logo-gov {
+  width: 50px;
+  height: auto;
+}
+
+.footer-contact-text {
+  font-size: 0.9rem;
+}
+
+.footer-divider-width {
+  width: 1px;
+}

@@ -1,0 +1,12 @@
+.layout-main-content {
+  background-color: var(--gov-bg);
+}
+
+.layout-blue-banner {
+  height: 210px;
+  z-index: 0;
+}
+
+.layout-container {
+  z-index: 1;
+}

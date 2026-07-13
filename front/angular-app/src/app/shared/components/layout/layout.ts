@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
 import { LayoutService } from '../../services/layout.service';
 import { Subscription } from 'rxjs';
 
@@ -12,11 +12,17 @@ export class LayoutComponent implements OnInit, OnDestroy {
   isSidebarOpen = false;
   private subs: Subscription = new Subscription();
 
-  constructor(private layoutService: LayoutService) {}
+  constructor(private layoutService: LayoutService, private cdr: ChangeDetectorRef) {}
 
   ngOnInit(): void {
-    this.subs.add(this.layoutService.isMobile$.subscribe(val => this.isMobile = val));
-    this.subs.add(this.layoutService.isSidebarOpen$.subscribe(val => this.isSidebarOpen = val));
+    this.subs.add(this.layoutService.isMobile$.subscribe(val => {
+      this.isMobile = val;
+      this.cdr.detectChanges();
+    }));
+    this.subs.add(this.layoutService.isSidebarOpen$.subscribe(val => {
+      this.isSidebarOpen = val;
+      this.cdr.detectChanges();
+    }));
   }
 
   ngOnDestroy(): void {

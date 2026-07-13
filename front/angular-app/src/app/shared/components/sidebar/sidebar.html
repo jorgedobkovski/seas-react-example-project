@@ -1,13 +1,7 @@
-<aside class="bg-white border-end sidebar-responsive"
-       [ngStyle]="{
-         'width': isOpen ? '315px' : '0',
-         'min-width': isOpen ? '315px' : '0',
-         'height': '100%',
-         'overflow': 'hidden',
-         'white-space': 'nowrap',
-         'transition': 'all 0.3s ease'
-       }">
-  <div style="width: 315px; padding: 15px; overflow-y: auto; height: 100%">
+<aside class="bg-white border-end shadow sidebar-responsive"
+       [class.sidebar-open]="isOpen"
+       [class.sidebar-closed]="!isOpen">
+  <div class="sidebar-content">
     <ul class="nav flex-column mt-2 gap-1">
       
       <!-- Active Link -->
@@ -34,14 +28,14 @@
 
       <!-- Regular Link - Collapsible -->
       <div class="nav-item">
-        <a class="nav-link sidebar-link d-flex align-items-center justify-content-between w-100" 
-           (click)="togglePrivacy()" style="cursor: pointer;">
+        <a class="nav-link sidebar-link d-flex align-items-center justify-content-between w-100 cursor-pointer" 
+           (click)="togglePrivacy()">
           <div class="d-flex align-items-center">
             <i class="fa-solid fa-shield-halved me-2"></i> 
             <span>Privacidade e Ajuda</span>
           </div>
-          <i class="fa-solid fa-chevron-left" 
-             [ngStyle]="{'font-size': '0.7rem', 'transition': 'transform 0.3s ease', 'transform': openPrivacy ? 'rotate(-90deg)' : 'rotate(0deg)'}">
+          <i class="fa-solid fa-chevron-left chevron-icon" 
+             [class.rotated]="openPrivacy">
           </i>
         </a>
         
@@ -49,23 +43,23 @@
           <div class="ps-3 pe-2 mt-1">
             <ul class="nav flex-column gap-1">
               <li class="nav-item">
-                <a class="nav-link sidebar-link py-1" routerLink="/aviso" routerLinkActive="active" style="font-size: 14px">
+                <a class="nav-link sidebar-link py-1 link-sm" routerLink="/aviso" routerLinkActive="active">
                   Aviso de Privacidade
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link sidebar-link py-1" routerLink="/politica" routerLinkActive="active" style="font-size: 14px">
+                <a class="nav-link sidebar-link py-1 link-sm" routerLink="/politica" routerLinkActive="active">
                   Politica de Privacidade
                 </a>
               </li>
 
               <!-- Nested Collapse -->
               <div class="nav-item">
-                <a class="nav-link sidebar-link d-flex align-items-center justify-content-between py-1 w-100" 
-                   (click)="toggleHelp()" style="font-size: 14px; cursor: pointer;">
+                <a class="nav-link sidebar-link d-flex align-items-center justify-content-between py-1 w-100 link-sm cursor-pointer" 
+                   (click)="toggleHelp()">
                   <span>Ajuda</span>
-                  <i class="fa-solid fa-chevron-left" 
-                     [ngStyle]="{'font-size': '0.7rem', 'transition': 'transform 0.3s ease', 'transform': openHelp ? 'rotate(-90deg)' : 'rotate(0deg)'}">
+                  <i class="fa-solid fa-chevron-left chevron-icon" 
+                     [class.rotated]="openHelp">
                   </i>
                 </a>
 
@@ -73,22 +67,22 @@
                   <div class="ps-3 mt-1">
                     <ul class="nav flex-column gap-1">
                       <li class="nav-item">
-                        <a href="https://falabr.cgu.gov.br/publico/RO/manifestacao/RegistrarManifestacao" target="_blank" class="nav-link sidebar-link py-1" style="font-size: 14px">
+                        <a href="https://falabr.cgu.gov.br/publico/RO/manifestacao/RegistrarManifestacao" target="_blank" class="nav-link sidebar-link py-1 link-sm">
                           Ouvidoria e acesso a informação
                         </a>
                       </li>
                       <li class="nav-item">
-                        <a href="#" class="nav-link sidebar-link py-1" style="font-size: 14px">
+                        <a href="#" class="nav-link sidebar-link py-1 link-sm">
                           Central de Ajuda
                         </a>
                       </li>
                       <li class="nav-item">
-                        <a href="https://atendimento.setic.ro.gov.br/index.php?redirect=%2Fplugins%2Fformcreator%2Ffront%2Fformlist.php?error=3" target="_blank" class="nav-link sidebar-link py-1" style="font-size: 14px">
+                        <a href="https://atendimento.setic.ro.gov.br/index.php?redirect=%2Fplugins%2Fformcreator%2Ffront%2Fformlist.php?error=3" target="_blank" class="nav-link sidebar-link py-1 link-sm">
                           Reportar Falhas
                         </a>
                       </li>
                       <li class="nav-item">
-                        <a href="https://rondonia.ro.gov.br/lgpd/" target="_blank" class="nav-link sidebar-link py-1" style="font-size: 14px">
+                        <a href="https://rondonia.ro.gov.br/lgpd/" target="_blank" class="nav-link sidebar-link py-1 link-sm">
                           LGPD
                         </a>
                       </li>

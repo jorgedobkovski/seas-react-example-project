@@ -1,22 +1,23 @@
-<header class="bg-white border-bottom px-4 shadow-sm d-flex align-items-center justify-content-between" style="z-index: 1000; height: 75px; min-height: 75px; flex-wrap: nowrap">
+<header class="app-header bg-white border-bottom px-4 shadow d-flex align-items-center justify-content-between">
   <!-- Left: Hamburger Menu -->
   <div class="d-flex align-items-center">
-    <button class="btn btn-link text-gov-blue p-0 me-3 text-decoration-none shadow-none"
-            style="font-size: 16px; width: 16px; height: 16px; display: flex; align-items: center; justify-content: center"
+    <button class="btn btn-link text-gov-blue p-0 me-3 text-decoration-none shadow-none btn-hamburger"
             (click)="toggleSidebar()">
-      <i class="fa-solid fa-bars" style="font-size: 16px"></i>
+      <i class="fa-solid fa-bars"></i>
     </button>
   </div>
+  
   <!-- Center: Logos -->
-  <a class="d-flex align-items-center justify-content-center mx-auto gap-1 text-decoration-none" routerLink="/" style="white-space: nowrap">
-    <img src="logo_sine.svg" alt="Sistema Logo" style="height: 62px" />
-    <div class="d-none d-sm-block bg-gov-blue" style="width: 1px; height: 62px"></div>
-    <img src="https://cdn.sistemas.ro.gov.br/imgs/logo-ro/v1/logo_governo_ro_texto_azul.svg" alt="Governo de Rondônia" class="d-none d-sm-block" style="height: 62px; width: 200px" />
+  <a class="logo-container d-flex align-items-center justify-content-center mx-auto gap-1 text-decoration-none" routerLink="/">
+    <img src="logo_sine.svg" alt="Sistema Logo" class="logo-img" />
+    <div class="d-none d-sm-block bg-gov-blue logo-divider"></div>
+    <img src="https://cdn.sistemas.ro.gov.br/imgs/logo-ro/v1/logo_governo_ro_texto_azul.svg" alt="Governo de Rondônia" class="d-none d-sm-block logo-gov" />
   </a>
+  
   <!-- Right: Actions -->
   <div class="d-flex align-items-center gap-3 ms-auto ms-md-0">
     <div class="dropdown d-none d-lg-block">
-      <button class="btn btn-link text-gov-blue text-decoration-none dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="font-size: 16px; font-weight: 500">
+      <button class="btn btn-link text-gov-blue text-decoration-none dropdown-toggle dropdown-btn" type="button" data-bs-toggle="dropdown" aria-expanded="false">
         <b>ACESSO À INFORMAÇÃO</b>
       </button>
       <ul class="dropdown-menu dropdown-menu-end">
@@ -24,10 +25,10 @@
         <li><a class="dropdown-item" href="#">e-SIC</a></li>
       </ul>
     </div>
-    <button class="btn btn-link text-secondary p-0 position-relative">
+    <button class="btn btn-link text-secondary p-0 position-relative btn-bell">
       <i class="fa-solid fa-bell fs-5"></i>
     </button>
-    <button class="btn bg-gov-blue text-white fw-bold d-flex align-items-center gap-2 px-3 shadow-none" style="font-size: 0.85rem; border-radius: 0.5rem; padding: 0.5rem 1rem">
+    <button class="btn bg-gov-blue text-white fw-bold d-flex align-items-center gap-2 px-3 shadow-none btn-access">
       <i class="fa-solid fa-right-to-bracket"></i> <span class="d-none d-sm-inline">Acessar Sistema</span>
     </button>
   </div>

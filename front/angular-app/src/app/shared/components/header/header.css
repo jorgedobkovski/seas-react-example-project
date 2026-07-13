@@ -1,0 +1,53 @@
+:host {
+  display: block;
+  width: 100%;
+}
+
+.app-header {
+  z-index: 1000;
+  height: 75px;
+  min-height: 75px;
+  flex-wrap: nowrap;
+}
+
+.btn-hamburger {
+  font-size: 16px;
+  width: 16px;
+  height: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-hamburger i {
+  font-size: 16px;
+}
+
+.logo-container {
+  white-space: nowrap;
+}
+
+.logo-img {
+  height: 62px;
+}
+
+.logo-divider {
+  width: 1px;
+  height: 62px;
+}
+
+.logo-gov {
+  height: 62px;
+  width: 200px;
+}
+
+.dropdown-btn {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.btn-access {
+  font-size: 0.85rem;
+  border-radius: 0.5rem;
+  padding: 0.5rem 1rem;
+}

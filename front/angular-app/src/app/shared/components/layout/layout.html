@@ -10,12 +10,12 @@
     <app-sidebar></app-sidebar>
     
     <!-- Main Content Area -->
-    <div class="d-flex flex-column flex-grow-1 overflow-auto position-relative" style="background-color: var(--gov-bg)">
+    <div class="d-flex flex-column flex-grow-1 overflow-auto position-relative layout-main-content">
       
       <!-- Blue Top Banner -->
-      <div class="bg-gov-blue w-100 position-absolute top-0 start-0" style="height: 210px; z-index: 0"></div>
+      <div class="bg-gov-blue w-100 position-absolute top-0 start-0 layout-blue-banner"></div>
 
-      <div class="container-fluid p-4 position-relative flex-grow-1" style="z-index: 1">
+      <div class="container-fluid p-4 position-relative flex-grow-1 layout-container">
         <ng-content></ng-content>
       </div>
       
